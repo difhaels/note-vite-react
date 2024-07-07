@@ -42,8 +42,11 @@ function Form() {
   const [quantity, setQuantity] = useState(1);
 
   function handleSubmit(e){
+    const name = 'aaa'
     e.preventDefault();
     
+    if(!name) return;
+
     const newItem = {
       name,
       quantity,
@@ -57,7 +60,7 @@ function Form() {
     setQuantity(1);
   }
 
-  const quantityNum = [...Array(20)].map((_, i) => (<option value={i + 1}>{i + 1}</option>))
+  const quantityNum = [...Array(20)].map((_, i) => (<option key={i + 1} value={i + 1}>{i + 1}</option>))
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
@@ -77,7 +80,7 @@ function GroceryList() {
       <div className="list">
         <ul>
           {groceryItems.map((item) => (
-            <Item item={item}/>
+            <Item item={item} key={item.id}/>
           ))}
         </ul>
       </div>
